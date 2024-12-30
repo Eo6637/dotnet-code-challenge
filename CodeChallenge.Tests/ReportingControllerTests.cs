@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CodeChallenge.Models;
-using CodeCodeChallenge.Tests.Integration.Extensions;
-using CodeCodeChallenge.Tests.Integration.Helpers;
+using CodeChallenge.Tests.Integration.Extensions;
+using CodeChallenge.Tests.Integration.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CodeChallenge.Tests.Integration
@@ -41,7 +41,7 @@ namespace CodeChallenge.Tests.Integration
             var employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
             var expectedFirstName = "John";
             var expectedLastName = "Lennon";
-            var expectedNumReports = 0;
+            var expectedNumReports = 4;
 
             // Execute
             var getRequestTask = _httpClient.GetAsync($"api/reporting/{employeeId}");
