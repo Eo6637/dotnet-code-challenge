@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CodeChallenge.Data;
 using CodeChallenge.Models;
 using CodeChallenge.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace CodeChallenge.Repositories
@@ -27,7 +28,8 @@ namespace CodeChallenge.Repositories
         
         public Compensation GetById(String id)
         {
-            return _compContext.Compensations.SingleOrDefault(c => c.Employee.EmployeeId == id);
+            // Eagerly load data for the compensation's associated employee
+            return _compContext.Compensations.Include(c => c.Employee).SingleOrDefault(c => c.EmployeeId == id);
         }
 
         public Task SaveAsync()

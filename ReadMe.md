@@ -78,10 +78,81 @@ This new type should have a new REST endpoint created for it. This new endpoint 
 the fully filled out ReportingStructure for the specified employeeId. The values should be computed on the fly and will 
 not be persisted.
 
+### How to Use
+The following endpoints are available to use:
+```
+* READ
+    * HTTP Method: GET 
+    * URL: localhost:8080/api/reporting/{id}
+    * RESPONSE: ReportingStructure
+```
+The ReportingStructure has a JSON schema of:
+```json
+{
+  "type":"ReportingStructure",
+  "properties": {
+    "employee": {
+      "type": "Employee"
+    },
+    "numberOfReports": {
+      "type": "int"
+    }
+  }
+}
+```
+For all endpoints that require an "id" in the URL, this is the "employeeId" field.
+
+For example, given the following structure:
+'''
+                    Lord Business
+        /               \                      \
+John Octan             Barry Copper       Vitruvius Freeman
+|                                            |                    \
+Emmett B                                  Lucy Banks          Bernard Day
+|
+Barry Johnson 
+'''
+The numberOfReports for employee Lord Business would be equal to 7.
+
 ### Task 2
 Create a new type, Compensation. A Compensation has the following fields: employee, salary, and effectiveDate. Create 
 two new Compensation REST endpoints. One to create and one to read by employeeId. These should persist and query the 
 Compensation from the persistence layer.
+
+### How to Use
+The following endpoints are available to use:
+```
+* CREATE
+    * HTTP Method: POST 
+    * URL: localhost:8080/api/compensation
+    * PAYLOAD: Compensation
+    * RESPONSE: Compensation
+* READ
+    * HTTP Method: GET 
+    * URL: localhost:8080/api/compensation/{id}
+    * RESPONSE: Compensation
+```
+The Compensation has a JSON schema of:
+```json
+{
+  "type":"Compensation",
+  "properties": {
+    "employee": {
+      "type": "Employee"
+    },
+    "employeeId": {
+      "type": "string"
+    },
+    "salary": {
+          "type": "int"
+    },
+    "effectiveDate": {
+          "type": "dateTime"
+    }
+  }
+}
+```
+For all endpoints that require an "id" in the URL, this is the "employeeId" field.
 
 ## Delivery
 Please upload your results to a publicly accessible Git repo. Free ones are provided by Github and Bitbucket.

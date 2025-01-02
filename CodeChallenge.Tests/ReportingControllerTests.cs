@@ -37,11 +37,11 @@ namespace CodeChallenge.Tests.Integration
         [TestMethod]
         public void GetReportingById_Returns_Ok()
         {
-            // Arrange
-            var employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
-            var expectedFirstName = "John";
-            var expectedLastName = "Lennon";
-            var expectedNumReports = 4;
+            // Verify that 'Lord Business' has 7 employees listed in his reporting structure
+            var employeeId = "e368906b-ae77-487f-b8cf-953236e3e5f0";
+            var expectedFirstName = "Lord";
+            var expectedLastName = "Business";
+            var expectedNumReports = 7;
 
             // Execute
             var getRequestTask = _httpClient.GetAsync($"api/reporting/{employeeId}");

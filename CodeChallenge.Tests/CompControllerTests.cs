@@ -38,7 +38,7 @@ namespace CodeChallenge.Tests.Integration
         [TestMethod]
         public void CreateComp_Returns_Created()
         {
-            // Arrange
+            // Create compensation for existing employee 'Pete Best'
             var employee = new Employee()
             {
                 EmployeeId = "03aa1462-ffa9-4978-1234-7c001562cf6f",
@@ -80,6 +80,8 @@ namespace CodeChallenge.Tests.Integration
         {
             // Arrange
             var employeeId = "03aa1462-ffa9-4978-1234-7c001562cf6f";
+            var expectedFirstName = "Pete";
+            var expectedLastName = "Best";
             var expectedSalary = 75000;
             var expectedEffective = new DateTime(2024, 1, 23);
 
@@ -92,6 +94,8 @@ namespace CodeChallenge.Tests.Integration
             var compensation = response.DeserializeContent<Compensation>();
             Assert.AreEqual(expectedSalary, compensation.Salary);
             Assert.AreEqual(expectedEffective, compensation.EffectiveDate);
+            Assert.AreEqual(expectedFirstName, compensation.Employee.FirstName);
+            Assert.AreEqual(expectedLastName, compensation.Employee.LastName);
         }
     }
 }

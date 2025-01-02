@@ -39,13 +39,19 @@ namespace CodeChallenge.Controllers
             return Ok(reporting);
         }
 
-        // Recursively traverse the tree of the reporting structure to count the nodes.
-        public int NumberOfReports(Employee employee)
+        // Private Method: Recursively traverse the tree of the reporting structure to count the nodes.
+        private int NumberOfReports(Employee employee)
         {
             if (employee.DirectReports == null)
                 return 0;
 
             var total = employee.DirectReports.Count;
+            
+            // For each employer, load that employer's direct report list
+            for (int i = 0; i < total; i++)
+            {
+                employee.DirectReports[i] = _employeeService.GetById(employee.DirectReports[i].EmployeeId);
+            }
 
             foreach (Employee report in employee.DirectReports)
             {
